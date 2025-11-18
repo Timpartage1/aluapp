@@ -12,7 +12,8 @@ export default function LoginPage() {
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
-      console.log("Add this domain to your Firebase authorized domains:", window.location.hostname);
+      // This is safe to run on the client, and will help with debugging auth issues.
+      console.log("Firebase Auth Domain Hint:", window.location.hostname);
     }
   }, []);
 

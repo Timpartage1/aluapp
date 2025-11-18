@@ -1,5 +1,6 @@
 "use client";
 
+import { useRef } from 'react';
 import Image from 'next/image';
 import { Heart, Share2 } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
@@ -9,6 +10,7 @@ import type { Quote } from '@/lib/quotes';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { cn } from '@/lib/utils';
 import { useToast } from '@/hooks/use-toast';
+import { toPng } from 'html-to-image';
 
 interface QuoteCardProps {
   quote: Quote;
@@ -17,6 +19,7 @@ interface QuoteCardProps {
 }
 
 export function QuoteCard({ quote, categoryImageId = 'daily-quote-bg', className }: QuoteCardProps) {
+  const cardRef = useRef<HTMLDivElement>(null);
   const { isFavorite, addFavorite, removeFavorite } = useFavorites();
   const { toast } = useToast();
   const isLiked = isFavorite(quote.id);
@@ -31,33 +34,41 @@ export function QuoteCard({ quote, categoryImageId = 'daily-quote-bg', className
   };
 
   const handleShare = async () => {
-    const shareText = `"${quote.text}" - K-Square Quotes`;
+    if (!cardRef.current) {
+      toast({
+        variant: "destructive",
+        title: "Error",
+        description: "Could not generate image to share.",
+      });
+      return;
+    }
+
     try {
-      if (navigator.share) {
+      const dataUrl = await toPng(cardRef.current, { cacheBust: true });
+      const blob = await (await fetch(dataUrl)).blob();
+      const file = new File([blob], "k-square-quote.png", { type: "image/png" });
+
+      if (navigator.canShare && navigator.canShare({ files: [file] })) {
         await navigator.share({
+          files: [file],
           title: 'K-Square Quote',
-          text: shareText,
+          text: `"${quote.text}" - K-Square`,
         });
       } else {
-        await navigator.clipboard.writeText(shareText);
-        toast({
-          title: "Copié !",
-          description: "Le devis a été copié dans le presse-papiers.",
-        });
+        throw new Error("Web Share API doesn't support files in this browser.");
       }
     } catch (error) {
-      console.error('Error sharing quote', error);
-      // Fallback to clipboard
-      await navigator.clipboard.writeText(shareText);
+      console.error('Error sharing quote image', error);
       toast({
-        title: "Copié !",
-        description: "Le devis a été copié dans le presse-papiers.",
+        variant: "destructive",
+        title: "Sharing not available",
+        description: "Your browser does not support sharing images directly. You can take a screenshot to share.",
       });
     }
   };
 
   return (
-    <Card className={cn("overflow-hidden relative aspect-[4/3] w-full shadow-lg hover:shadow-xl transition-shadow duration-300", className)}>
+    <Card ref={cardRef} className={cn("overflow-hidden relative aspect-[4/3] w-full shadow-lg hover:shadow-xl transition-shadow duration-300", className)}>
       <Image
         src={placeholderImage.imageUrl}
         alt={placeholderImage.description}

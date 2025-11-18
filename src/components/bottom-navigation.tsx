@@ -2,8 +2,19 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Home, Heart, Info } from 'lucide-react';
+import { Home, Heart, Info, Search } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { useAuth } from '@/context/auth-provider';
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog"
+import { SearchInput } from './search-input';
+import { useState } from 'react';
+
 
 const navItems = [
   { href: '/home', icon: Home, label: 'Home' },
@@ -13,6 +24,7 @@ const navItems = [
 
 export function BottomNavigation() {
   const pathname = usePathname();
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
 
   return (
     <nav className="fixed bottom-0 left-0 right-0 z-40 border-t border-border/50 bg-background/80 backdrop-blur-sm md:hidden">
@@ -35,6 +47,24 @@ export function BottomNavigation() {
             </Link>
           );
         })}
+         <Dialog open={isSearchOpen} onOpenChange={setIsSearchOpen}>
+          <DialogTrigger asChild>
+            <button
+              className={cn(
+                'flex flex-col items-center gap-1 rounded-md p-2 text-sm transition-colors text-muted-foreground hover:text-foreground'
+              )}
+            >
+              <Search className="h-6 w-6" />
+              <span className="text-xs font-medium">Search</span>
+            </button>
+          </DialogTrigger>
+          <DialogContent>
+            <DialogHeader>
+              <DialogTitle>Search Quotes</DialogTitle>
+            </DialogHeader>
+            <SearchInput onSearch={() => setIsSearchOpen(false)} />
+          </DialogContent>
+        </Dialog>
       </div>
     </nav>
   );

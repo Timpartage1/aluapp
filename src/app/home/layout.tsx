@@ -1,5 +1,6 @@
 import { AuthGuard } from "@/components/auth-guard";
 import { AppShell } from "@/components/app-shell";
+import { Suspense } from "react";
 
 export default function ProtectedLayout({
   children,
@@ -9,7 +10,7 @@ export default function ProtectedLayout({
   return (
     <AuthGuard>
       <AppShell>
-        {children}
+        <Suspense>{children}</Suspense>
       </AppShell>
     </AuthGuard>
   );
