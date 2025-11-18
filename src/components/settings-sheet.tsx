@@ -16,7 +16,7 @@ import { Separator } from '@/components/ui/separator';
 import { useAuth } from '@/context/auth-provider';
 import { useState } from 'react';
 import { handleRefreshQuotes } from '@/app/actions';
-import { useToast } from '@/components/ui/use-toast';
+import { useToast } from '@/hooks/use-toast';
 
 
 interface SettingsSheetProps {
