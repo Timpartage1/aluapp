@@ -3,38 +3,38 @@
     {
       "id": "daily-quote-bg",
       "description": "Abstract background for the daily quote.",
-      "imageUrl": "https://picsum.photos/seed/101/800/600",
+      "imageUrl": "https://images.unsplash.com/photo-1550859492-d5da9d8e45f3?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw2fHxhYnN0cmFjdCUyMHRleHR1cmV8ZW58MHx8fHwxNzYzNDQ5MTQ4fDA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "abstract texture"
     },
     {
       "id": "excellence-bg",
       "description": "Background for excellence quotes.",
-      "imageUrl": "https://picsum.photos/seed/102/800/600",
+      "imageUrl": "https://images.unsplash.com/photo-1504870712357-65ea720d6078?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxtb3VudGFpbiUyMHBlYWt8ZW58MHx8fHwxNzYzMzc5NTI0fDA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "mountain peak"
     },
     {
       "id": "relationships-bg",
       "description": "Background for relationships quotes.",
-      "imageUrl": "https://picsum.photos/seed/103/800/600",
+      "imageUrl": "https://images.unsplash.com/photo-1592254765718-02cdd14502fc?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxob2xkaW5nJTIwaGFuZHN8ZW58MHx8fHwxNzYzMzY4NjIxfDA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "holding hands"
     },
     {
       "id": "spiritual-growth-bg",
       "description": "Background for spiritual growth quotes.",
-      "imageUrl": "https://picsum.photos/seed/104/800/600",
+      "imageUrl": "https://images.unsplash.com/photo-1520052600632-67420194a58f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHxmb3Jlc3QlMjBwYXRofGVufDB8fHx8MTc2MzQ2NTc0NXww&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "forest path"
     },
     {
       "id": "personal-development-bg",
       "description": "Background for personal development quotes.",
-      "imageUrl": "https://picsum.photos/seed/105/800/600",
+      "imageUrl": "https://images.unsplash.com/photo-1738889456820-ba36c2774529?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxwZXJzb24lMjBjbGltYmluZ3xlbnwwfHx8fDE3NjM0NjY1ODJ8MA&ixlib=rb-4.1.0&q=80&w=1080",
       "imageHint": "person climbing"
     },
     {
       "id": "about-page-bg",
       "description": "Image for the about page.",
-      "imageUrl": "https://picsum.photos/seed/106/400/400",
-      "imageHint":- "portrait man"
+      "imageUrl": "https://images.unsplash.com/photo-1568602471122-7832951cc4c5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw0fHxwb3J0cmFpdCUyMG1hbnxlbnwwfHx8fDE3NjMzOTcxNjh8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "portrait man"
     }
   ]
 }
