@@ -1,3 +1,40 @@
 {
-  "placeholderImages": []
+  "placeholderImages": [
+    {
+      "id": "daily-quote-bg",
+      "description": "Abstract background for the daily quote.",
+      "imageUrl": "https://picsum.photos/seed/101/800/600",
+      "imageHint": "abstract texture"
+    },
+    {
+      "id": "excellence-bg",
+      "description": "Background for excellence quotes.",
+      "imageUrl": "https://picsum.photos/seed/102/800/600",
+      "imageHint": "mountain peak"
+    },
+    {
+      "id": "relationships-bg",
+      "description": "Background for relationships quotes.",
+      "imageUrl": "https://picsum.photos/seed/103/800/600",
+      "imageHint": "holding hands"
+    },
+    {
+      "id": "spiritual-growth-bg",
+      "description": "Background for spiritual growth quotes.",
+      "imageUrl": "https://picsum.photos/seed/104/800/600",
+      "imageHint": "forest path"
+    },
+    {
+      "id": "personal-development-bg",
+      "description": "Background for personal development quotes.",
+      "imageUrl": "https://picsum.photos/seed/105/800/600",
+      "imageHint": "person climbing"
+    },
+    {
+      "id": "about-page-bg",
+      "description": "Image for the about page.",
+      "imageUrl": "https://picsum.photos/seed/106/400/400",
+      "imageHint":- "portrait man"
+    }
+  ]
 }
