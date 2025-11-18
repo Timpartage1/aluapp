@@ -83,7 +83,7 @@ export function SettingsSheet({ open, onOpenChange }: SettingsSheetProps) {
         </div>
         <SheetFooter>
           <Button variant="outline" className="w-full" onClick={signOut}>
-            Sign Out
+            Logout
           </Button>
         </SheetFooter>
       </SheetContent>

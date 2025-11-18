@@ -30,12 +30,30 @@ export function QuoteCard({ quote, categoryImageId = 'daily-quote-bg', className
     }
   };
 
-  const handleShare = () => {
-    navigator.clipboard.writeText(`"${quote.text}" - K-Square Quotes`);
-    toast({
-      title: "Copié !",
-      description: "Le devis a été copié dans le presse-papiers.",
-    });
+  const handleShare = async () => {
+    const shareText = `"${quote.text}" - K-Square Quotes`;
+    try {
+      if (navigator.share) {
+        await navigator.share({
+          title: 'K-Square Quote',
+          text: shareText,
+        });
+      } else {
+        await navigator.clipboard.writeText(shareText);
+        toast({
+          title: "Copié !",
+          description: "Le devis a été copié dans le presse-papiers.",
+        });
+      }
+    } catch (error) {
+      console.error('Error sharing quote', error);
+      // Fallback to clipboard
+      await navigator.clipboard.writeText(shareText);
+      toast({
+        title: "Copié !",
+        description: "Le devis a été copié dans le presse-papiers.",
+      });
+    }
   };
 
   return (
