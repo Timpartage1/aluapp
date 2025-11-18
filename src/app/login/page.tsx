@@ -11,6 +11,12 @@ export default function LoginPage() {
   const router = useRouter();
 
   useEffect(() => {
+    if (typeof window !== 'undefined') {
+      console.log("Add this domain to your Firebase authorized domains:", window.location.hostname);
+    }
+  }, []);
+
+  useEffect(() => {
     if (user) {
       router.push('/home');
     }
