@@ -1,9 +1,10 @@
+"use client";
 
 import Image from 'next/image';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { ArrowRight } from 'lucide-react';
-import { LocaleProvider, useLocale } from '@/context/locale-provider';
+import { useLocale } from '@/context/locale-provider';
 
 function ResourcesContent() {
   const { t } = useLocale();

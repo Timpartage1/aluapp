@@ -1,5 +1,5 @@
 
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import './globals.css';
 import { Toaster } from '@/components/ui/toaster';
 import { FavoritesProvider } from '@/context/favorites-provider';
@@ -12,6 +12,9 @@ export const metadata: Metadata = {
   title: 'K-Square Quotes',
   description: 'Passez votre journée avec des moments inspirés',
   manifest: '/manifest.json',
+};
+
+export const viewport: Viewport = {
   themeColor: '#000000',
 };
 
