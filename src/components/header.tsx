@@ -1,9 +1,8 @@
-
 "use client";
 
 import { useState, useEffect } from 'react';
-import { Cog, Home, Heart, Info, MessageSquarePlus, BookOpen } from 'lucide-react';
-import { useAuth } from '@/context/auth-provider';
+import { Cog } from 'lucide-react';
+import { useUser } from '@/firebase';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
 import { SettingsSheet } from './settings-sheet';
@@ -16,7 +15,7 @@ import { useLocale } from '@/context/locale-provider';
 
 
 export function Header() {
-  const { user } = useAuth();
+  const { user } = useUser();
   const [greeting, setGreeting] = useState('');
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
   const pathname = usePathname();

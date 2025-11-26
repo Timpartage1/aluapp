@@ -1,3 +1,4 @@
+
 /**
  * This ruleset enforces a security model with two distinct patterns:
  * 1. A strict user-ownership model for all user-specific data.

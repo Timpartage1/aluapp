@@ -2,11 +2,11 @@
 import type { Metadata } from 'next';
 import './globals.css';
 import { Toaster } from '@/components/ui/toaster';
-import { AuthProvider } from '@/context/auth-provider';
 import { FavoritesProvider } from '@/context/favorites-provider';
 import { ThemeProvider } from '@/context/theme-provider';
 import { LocaleProvider } from '@/context/locale-provider';
 import { cn } from '@/lib/utils';
+import { FirebaseClientProvider } from '@/firebase/client-provider';
 
 export const metadata: Metadata = {
   title: 'K-Square Quotes',
@@ -32,14 +32,14 @@ export default function RootLayout({
       </head>
       <body className={cn('font-body antialiased', 'min-h-screen bg-background')}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          <AuthProvider>
-            <FavoritesProvider>
-              <LocaleProvider>
-                {children}
-                <Toaster />
-              </LocaleProvider>
-            </FavoritesProvider>
-          </AuthProvider>
+            <FirebaseClientProvider>
+                <FavoritesProvider>
+                  <LocaleProvider>
+                    {children}
+                    <Toaster />
+                  </LocaleProvider>
+                </FavoritesProvider>
+            </FirebaseClientProvider>
         </ThemeProvider>
       </body>
     </html>

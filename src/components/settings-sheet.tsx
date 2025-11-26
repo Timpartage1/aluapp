@@ -1,4 +1,3 @@
-
 "use client";
 
 import {
@@ -13,7 +12,7 @@ import { Button } from '@/components/ui/button';
 import { Label } from '@/components/ui/label';
 import { Switch } from '@/components/ui/switch';
 import { Separator } from '@/components/ui/separator';
-import { useAuth } from '@/context/auth-provider';
+import { useAuth } from '@/firebase';
 import { useState } from 'react';
 import { handleRefreshQuotes } from '@/app/actions';
 import { useToast } from '@/hooks/use-toast';
@@ -34,7 +33,7 @@ interface SettingsSheetProps {
 }
 
 export function SettingsSheet({ open, onOpenChange }: SettingsSheetProps) {
-  const { signOut } = useAuth();
+  const auth = useAuth();
   const [isRefreshing, setIsRefreshing] = useState(false);
   const { toast } = useToast();
   const { theme, setTheme } = useTheme();
@@ -51,6 +50,10 @@ export function SettingsSheet({ open, onOpenChange }: SettingsSheetProps) {
       setIsRefreshing(false);
     }
   };
+
+  const signOut = () => {
+    auth.signOut();
+  }
 
   return (
     <Sheet open={open} onOpenChange={onOpenChange}>
