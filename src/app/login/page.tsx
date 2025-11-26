@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useAuth } from '@/context/auth-provider';
@@ -44,7 +45,7 @@ export default function LoginPage() {
         <Logo className="h-12 w-auto text-primary" />
         <div className="text-center">
           <h1 className="font-headline text-3xl font-bold text-card-foreground">
-            Welcome to K-Square Quotes
+            Welcome to K-Square Ministries
           </h1>
           <p className="mt-2 text-muted-foreground">
             Sign in to start your journey of inspiration.
