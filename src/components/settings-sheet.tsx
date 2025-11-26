@@ -1,4 +1,3 @@
-
 "use client";
 
 import {
@@ -17,6 +16,15 @@ import { useAuth } from '@/context/auth-provider';
 import { useState } from 'react';
 import { handleRefreshQuotes } from '@/app/actions';
 import { useToast } from '@/hooks/use-toast';
+import { useTheme } from 'next-themes';
+import { useLocale } from '@/context/locale-provider';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select"
 
 
 interface SettingsSheetProps {
@@ -28,14 +36,16 @@ export function SettingsSheet({ open, onOpenChange }: SettingsSheetProps) {
   const { signOut } = useAuth();
   const [isRefreshing, setIsRefreshing] = useState(false);
   const { toast } = useToast();
+  const { theme, setTheme } = useTheme();
+  const { locale, setLocale, t } = useLocale();
 
   const onRefresh = async () => {
     setIsRefreshing(true);
     try {
       await handleRefreshQuotes();
-      toast({ title: "Success", description: "Quotes have been refreshed." });
+      toast({ title: t.refresh_success_title, description: t.refresh_success_desc });
     } catch (error) {
-      toast({ variant: "destructive", title: "Error", description: "Failed to refresh quotes." });
+      toast({ variant: "destructive", title: t.refresh_error_title, description: t.refresh_error_desc });
     } finally {
       setIsRefreshing(false);
     }
@@ -45,28 +55,44 @@ export function SettingsSheet({ open, onOpenChange }: SettingsSheetProps) {
     <Sheet open={open} onOpenChange={onOpenChange}>
       <SheetContent>
         <SheetHeader>
-          <SheetTitle>Settings</SheetTitle>
+          <SheetTitle>{t.settings_title}</SheetTitle>
           <SheetDescription>
-            Manage your app preferences.
+            {t.settings_description}
           </SheetDescription>
         </SheetHeader>
         <div className="grid gap-6 py-6">
           <div className="flex items-center justify-between">
-            <Label htmlFor="dark-mode">Dark Mode</Label>
-            <Switch id="dark-mode" disabled />
+            <Label htmlFor="dark-mode">{t.settings_dark_mode}</Label>
+            <Switch 
+              id="dark-mode" 
+              checked={theme === 'dark'}
+              onCheckedChange={(checked) => setTheme(checked ? 'dark' : 'light')}
+            />
           </div>
           <div className="flex items-center justify-between">
-            <Label htmlFor="notifications">Quote Alerts (every 3 hours)</Label>
+            <Label htmlFor="language">{t.settings_language}</Label>
+            <Select value={locale} onValueChange={(value) => setLocale(value as 'en' | 'fr')}>
+              <SelectTrigger className="w-[180px]">
+                <SelectValue placeholder="Language" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="en">English</SelectItem>
+                <SelectItem value="fr">Français</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
+          <div className="flex items-center justify-between">
+            <Label htmlFor="notifications">{t.settings_notifications}</Label>
             <Switch id="notifications" />
           </div>
           
           <Separator />
 
           <div className="space-y-2">
-            <h3 className="font-semibold">À Propos</h3>
+            <h3 className="font-semibold">{t.settings_about_dev_title}</h3>
             <div className="text-sm text-muted-foreground font-code p-3 bg-muted rounded-md space-y-2">
               <p><strong>Dev:</strong> Provided by PICASF (www.picasf.com), by KAMATE KATENDE TIMOTHEE</p>
-              <p><strong>About the App:</strong> L’application contient les Quotes datant de 2018 à 2025. La nouvelle version est compatible avec les systèmes IOS, Android et Web. L’application est interactive et permet aux utilisateurs de poser des questions ou d’émettre des commentaires. Elle est utilisable hors ligne. Des mises à jour seront requises pour accéder aux nouvelles fonctionnalités et aux quotes récemment intégrés.</p>
+              <p><strong>{t.settings_about_app_title}:</strong> {t.settings_about_app_desc}</p>
             </div>
           </div>
           
@@ -74,16 +100,14 @@ export function SettingsSheet({ open, onOpenChange }: SettingsSheetProps) {
           
           <div>
             <Button onClick={onRefresh} disabled={isRefreshing} className='w-full'>
-              {isRefreshing ? 'Refreshing...' : 'Refresh Quotes with AI'}
+              {isRefreshing ? t.refresh_button_loading : t.refresh_button}
             </Button>
-            <p className="text-xs text-muted-foreground mt-2">Periodically refreshes quotes in the Firestore database using GenAI.</p>
+            <p className="text-xs text-muted-foreground mt-2">{t.refresh_description}</p>
           </div>
-
-
         </div>
         <SheetFooter>
           <Button variant="outline" className="w-full" onClick={signOut}>
-            Logout
+            {t.logout_button}
           </Button>
         </SheetFooter>
       </SheetContent>

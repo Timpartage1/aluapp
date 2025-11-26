@@ -44,26 +44,35 @@ export function QuoteCard({ quote, categoryImageId = 'daily-quote-bg', className
     }
 
     try {
-      const dataUrl = await toPng(cardRef.current, { cacheBust: true });
-      const blob = await (await fetch(dataUrl)).blob();
-      const file = new File([blob], "k-square-quote.png", { type: "image/png" });
+      const dataUrl = await toPng(cardRef.current, { cacheBust: true, pixelRatio: 2 });
+      
+      const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+      if (isMobile && navigator.share) {
+        const blob = await (await fetch(dataUrl)).blob();
+        const file = new File([blob], "k-square-quote.png", { type: "image/png" });
 
-      if (navigator.canShare && navigator.canShare({ files: [file] })) {
-        await navigator.share({
-          files: [file],
-          title: 'K-Square Quote',
-          text: `"${quote.text}" - K-Square`,
-        });
+        if (navigator.canShare && navigator.canShare({ files: [file] })) {
+          await navigator.share({
+            files: [file],
+            title: 'K-Square Quote',
+            text: `"${quote.text}" - K-Square`,
+          });
+        } else {
+           throw new Error("Sharing not supported");
+        }
       } else {
-        throw new Error("Web Share API doesn't support files in this browser.");
+        // Fallback for desktop browsers: download the image
+        const link = document.createElement('a');
+        link.download = 'k-square-quote.png';
+        link.href = dataUrl;
+        link.click();
       }
     } catch (error) {
       console.error('Error sharing quote image', error);
-      toast({
-        variant: "destructive",
-        title: "Sharing not available",
-        description: "Your browser does not support sharing images directly. You can take a screenshot to share.",
-      });
+       const link = document.createElement('a');
+        link.download = 'k-square-quote.png';
+        link.href = await toPng(cardRef.current!, { cacheBust: true, pixelRatio: 2 });
+        link.click();
     }
   };
 

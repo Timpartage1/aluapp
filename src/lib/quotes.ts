@@ -169,8 +169,8 @@ export const QUOTE_DATA: QuoteCategory[] = [
     ]
   },
   {
-    slug: 'developpement-personnel',
-    title: 'Développement Personnel',
+    slug: 'epanouissement-pratique-empowerment',
+    title: 'Epanouissement pratique & empowerment',
     description: 'Amélioration continue de soi',
     image: 'personal-development-bg',
     quotes: [

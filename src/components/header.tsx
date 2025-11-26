@@ -1,8 +1,7 @@
-
 "use client";
 
 import { useState, useEffect } from 'react';
-import { Cog, Home, Heart, Info } from 'lucide-react';
+import { Cog, Home, Heart, Info, MessageSquarePlus, BookOpen } from 'lucide-react';
 import { useAuth } from '@/context/auth-provider';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
@@ -11,34 +10,33 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { cn } from '@/lib/utils';
 import { SearchInput } from './search-input';
-import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover"
 import { Logo } from './logo';
+import { useLocale } from '@/context/locale-provider';
 
-
-const navItems = [
-  { href: '/home', icon: Home, label: 'Home' },
-  { href: '/home/favorites', icon: Heart, label: 'Favorites' },
-  { href: '/home/about', icon: Info, label: 'About' },
-];
 
 export function Header() {
   const { user } = useAuth();
   const [greeting, setGreeting] = useState('');
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
   const pathname = usePathname();
+  const { t } = useLocale();
+
+  const navItems = [
+    { href: '/home', label: t.nav_home },
+    { href: '/home/favorites', label: t.nav_favorites },
+    { href: '/home/resources', label: t.nav_resources },
+    { href: '/home/feedback', label: t.nav_feedback },
+    { href: '/home/about', label: t.nav_about },
+  ];
 
   useEffect(() => {
     const hour = new Date().getHours();
     if (hour < 18) {
-      setGreeting('Bonjour,');
+      setGreeting(t.greeting_morning);
     } else {
-      setGreeting('Bonsoir,');
+      setGreeting(t.greeting_evening);
     }
-  }, []);
+  }, [t]);
 
   return (
     <>
@@ -53,7 +51,7 @@ export function Header() {
                 const isActive = pathname === item.href;
                 return (
                   <Link
-                    key={item.label}
+                    key={item.href}
                     href={item.href}
                     className={cn(
                       'text-sm font-medium transition-colors',
@@ -86,7 +84,7 @@ export function Header() {
             <div className="mt-2 text-left">
               <p className="text-sm text-muted-foreground">{greeting} {user?.displayName?.split(' ')[0]}</p>
               <h1 className="font-headline text-xl md:text-2xl font-bold text-primary">
-                Passez votre journée avec des moments inspirés
+                {t.headline}
               </h1>
             </div>
         </div>

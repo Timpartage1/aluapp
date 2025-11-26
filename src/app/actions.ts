@@ -35,3 +35,27 @@ export async function handleRefreshQuotes() {
     return { success: false, error: "Failed to refresh quotes." };
   }
 }
+
+export async function handleFeedbackSubmit(formData: FormData) {
+  const name = formData.get('name') as string;
+  const email = formData.get('email') as string;
+  const message = formData.get('message') as string;
+
+  console.log('New Feedback Submitted:');
+  console.log('Name:', name);
+  console.log('Email:', email);
+  console.log('Message:', message);
+
+  // Here you would typically send this data to a backend service,
+  // an email service, or store it in Firestore.
+  // For this example, we'll just log it to the console.
+
+  if (!name || !email || !message) {
+    return { success: false, error: 'Please fill out all fields.' };
+  }
+  
+  // Simulate a network request
+  await new Promise(resolve => setTimeout(resolve, 1000));
+
+  return { success: true };
+}
