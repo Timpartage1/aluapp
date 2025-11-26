@@ -3,37 +3,37 @@
     {
       "id": "daily-quote-bg",
       "description": "Abstract background for the daily quote.",
-      "imageUrl": "https://picasf.com/images/picasf.JPG",
+      "imageUrl": "/ksqback.png",
       "imageHint": "abstract texture"
     },
     {
       "id": "excellence-bg",
       "description": "Background for excellence quotes.",
-      "imageUrl": "https://picasf.com/images/picasf.JPG",
+      "imageUrl": "/ksqback.png",
       "imageHint": "mountain peak"
     },
     {
       "id": "relationships-bg",
       "description": "Background for relationships quotes.",
-      "imageUrl": "https://picasf.com/images/picasf.JPG",
+      "imageUrl": "/ksqback.png",
       "imageHint": "holding hands"
     },
     {
       "id": "spiritual-growth-bg",
       "description": "Background for spiritual growth quotes.",
-      "imageUrl": "https://picasf.com/images/picasf.JPG",
+      "imageUrl": "/ksqback.png",
       "imageHint": "forest path"
     },
     {
       "id": "personal-development-bg",
       "description": "Background for personal development quotes.",
-      "imageUrl": "https://picasf.com/images/picasf.JPG",
+      "imageUrl": "/ksqback.png",
       "imageHint": "person climbing"
     },
     {
       "id": "about-page-bg",
       "description": "Image for the about page.",
-      "imageUrl": "https://picasf.com/images/picasf.JPG",
+      "imageUrl": "/ksqimage.png",
       "imageHint": "portrait man"
     }
   ]
